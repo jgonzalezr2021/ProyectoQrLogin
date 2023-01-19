@@ -1,12 +1,50 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {% load static %}
+   <link rel="stylesheet" href="css/login.css">
+        
+
+   <script type="text/javascript">
+   
+   </script>
+
+
+    <title>Login Page</title>
 </head>
+
 <body>
+           
+        <div id="contenedor">
+            <div id="central">
+                <div id="login">
+                    <div class="titulo">
+                        Bienvenido
+                    </div>
+                    <form id="loginform" method="POST">
+                        {% csrf_token %}
+                        
+                        <input type="text" name="username" id="username" placeholder="Usuario" required>
+                        
+                        <input type="password" name="password" id="password" placeholder="Contraseña" required>
+                        
+                        <input type="submit" value="Log In" class="submit_button">
+                        {% for message in messages %}
+                        <p class="error-message">{{ message }}</p>
+                        {% endfor %}
+
+                        <p> No tienes una cuenta aun? <a href="{% url 'register' %}" >Registrarse</a> </p>
+                    </form>
+                    
+                </div>
+                
+            </div>
+        </div>
+            
     
 </body>
+
 </html>
