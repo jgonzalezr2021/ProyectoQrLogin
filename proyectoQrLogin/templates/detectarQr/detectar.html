@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" 
     integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
     
     <title>Modulo detector</title>
     <style type="text/css">
@@ -15,6 +18,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar-expand-lg navbar-dark bg-dark " style="background-color: #000000">
         
@@ -34,7 +38,43 @@
             </div>
         </div>
     </nav>
+    <div class="container">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.esm.min.js" integrity="sha512-Oz1b6eJ3gVXzBtTRr9ljoZJ6TlU3vmvrqRyJs5xsZkbEy7CQJ/3KL5L1tXOXmiJT0E9WRZSNvvDHfeDkkqL7ug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-
+    </div>
+    <div class="row">
+        <h2>Generador de códigos QR y de barras.</h2>
+        <p>
+            Para genera codigos QR y codigos de barra seleccione el tipo de codigo que desea y a continuación<br />
+            escriba lo que se desea encriptar y posteriormente clic en generar codigo.
+        </p>
+        <hr />
+    
+        <div class="col-md-10 mx-auto">
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-group row">
+                    <div class="col-sm-5">
+                        <label for="typeOfBarcode">Elija un tipo de código del menú:</label>
+                        <select class="form-control" id="typeOfBarcode" name="typeOfBarcode">
+                            {% for barcode_type in barcode_types %}
+                            <option>{{ barcode_type }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-sm-5">
+                        <label for="barcodeData">Agregar datos:</label>
+                        <input type="text" id="barcodeData" name="barcodeData" class="form-control input" required />
+                    </div>
+                    <div class="col-sm-2">
+                        <label for="btnGenerate">Clic para generar</label>
+                        <button type="submit" id="btnGenerate" class="form-control btn btn-primary">Generar código</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
+
 </html>
+
