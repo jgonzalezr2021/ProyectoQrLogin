@@ -4,105 +4,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" 
-    integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    {% load static %}
+   <link rel="stylesheet" href="css/login.css">
+        
+   <style type="text/css">
+           body {
+     font-family: 'Overpass', sans-serif;
+        font-weight: normal;
+        font-size: 100%;
+        color: #1b262c;
     
-    <title>Inicio</title>
-    <style type="text/css">
-        .navbar-brand
-        {
-            
-            font-size: xx-large;
-        }
-    </style>
+        margin: 0;
+        background-color: #3b4850;
+    }
+
+    #contenedor {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+    
+     margin: 0;
+     padding: 0;
+     min-width: 100vw;
+     min-height: 100vh;
+     width: 100%;
+     height: 100%;
+    }
+
+    #central {
+        max-width: 320px;
+        width: 100%;
+    }
+
+    .titulo {
+        font-size: 250%;
+        color:#bbe1fa;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #login {
+        width: 100%;
+        padding: 50px 30px;
+        background-color: #585b5e;
+        
+        -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+        -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+        box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
+        
+        border-radius: 3px 3px 3px 3px;
+        -moz-border-radius: 3px 3px 3px 3px;
+        -webkit-border-radius: 3px 3px 3px 3px;
+        
+        box-sizing: border-box;
+    }
+
+    #login input {
+        font-family: 'Overpass', sans-serif;
+        font-size: 110%;
+        color: #1b262c;
+        
+        display: block;
+        width: 100%;
+        height: 40px;
+        
+        margin-bottom: 10px;
+        padding: 5px 5px 5px 10px;
+        
+        box-sizing: border-box;
+        
+        border: none;
+        border-radius: 3px 3px 3px 3px;
+        -moz-border-radius: 3px 3px 3px 3px;
+        -webkit-border-radius: 3px 3px 3px 3px;
+    }
+
+    #login input::placeholder {
+        font-family: 'Overpass', sans-serif;
+        color: #E4E4E4;
+    }
+
+    #login button {
+        font-family: 'Overpass', sans-serif;
+        font-size: 110%;
+        color:#1b262c;
+        width: 100%;
+        height: 40px;
+        border: none;
+        
+        border-radius: 3px 3px 3px 3px;
+        -moz-border-radius: 3px 3px 3px 3px;
+        -webkit-border-radius: 3px 3px 3px 3px;
+        
+        background-color: #bbe1fa;
+        
+        margin-top: 10px;
+    }
+
+    #login button:hover {
+        background-color: #0f4c75;
+        color:#bbe1fa;
+    }
+
+    .pie-form {
+        font-size: 90%;
+        text-align: center;    
+        margin-top: 15px;
+    }
+
+    .pie-form a {
+        display: block;
+        text-decoration: none;
+        color: #bbe1fa;
+        margin-bottom: 3px;
+    }
+
+    .pie-form a:hover {
+        color: #0f4c75;
+    }
+
+    .inferior {
+        margin-top: 10px;
+        font-size: 90%;
+        text-align: center;
+    }
+
+    .inferior a {
+        display: block;
+        text-decoration: none;
+        color: #bbe1fa;
+        margin-bottom: 3px;
+    }
+
+    .inferior a:hover {
+        color: #3282b8;
+    }
+
+   </style>
+   
+   <script type="text/javascript">
+   
+   </script>
+
+
+    <title>Login Page</title>
 </head>
 
 <body>
-    <nav class="navbar-expand-lg navbar-dark bg-dark " style="background-color: #000000">
-        
-        <div class="container-fluid container-md">
-            <a class="navbar-brand" href="{% url 'home' %}">Deteccion y creacion de codigo de barras y QR</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                <div class="navbar-nav">
-                    <a class="nav-link active" aria-current="page" >Hola, {{username}} ||</a><br>
-                    
-                    <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Salir</a>
+           
+        <div id="contenedor">
+            <div id="central">
+                <div id="login">
+                    <div class="titulo">
+                        Bienvenido
+                    </div>
+                    <form id="loginform" method="POST">
+                        {% csrf_token %}
+                        
+                        <input type="text" name="username" id="username" placeholder="Usuario" required>
+                        
+                        <input type="password" name="password" id="password" placeholder="Contraseña" required>
+                        
+                        <input type="submit" value="Log In" class="submit_button">
+                        {% for message in messages %}
+                        <p class="error-message">{{ message }}</p>
+                        {% endfor %}
+
+                        <p> No tienes una cuenta aun? <a href="{% url 'register' %}" >Registrarse</a> </p>
+                    </form>
                     
                 </div>
+                
             </div>
         </div>
-    </nav>
-    <div class="container">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.esm.min.js" integrity="sha512-Oz1b6eJ3gVXzBtTRr9ljoZJ6TlU3vmvrqRyJs5xsZkbEy7CQJ/3KL5L1tXOXmiJT0E9WRZSNvvDHfeDkkqL7ug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    </div>
-
-
-    <div class="row">
-        <p>
             
-            Proyecto de un módulo pequeño de detección de código QR y de barras hecho por Jacinto González y Lissette 
-            Caceres, desarrollado con el framework Django y el lenguaje de programación Python. <br />
-
-            <h3>A continuacion seleccione que desea utilizar: <br /></h3>
-            <div class="btndetector_generator">
-                <h2>
-                    <style>
-                        .fcc-btn {
-                        background-color: #373946;
-                        color: white;
-                        padding: 10px 20px;
-                        text-decoration: none;
-                        margin: 400px;
-                        justify-content: center;
-                        
-                        }
-                        .fcc-btn:hover {
-                        background-color: #bbbbc9;
-                        }
-                    
-                    </style>
-                    <br>
-
-                    <a class="fcc-btn" href="{% url 'generarQr' %}" >Ingresar al modulo de generar</a>
-                    
-                </h2>
-                <br>
-                <h2>
-                    <style>
-                        .fcc-btn1 {
-                        background-color: #373946;
-                        color: white;
-                        padding: 10px 20px;
-                        text-decoration: none;
-                        justify-content: center;
-                        margin-left: 400px;
-                        
-                        
-                        }
-                        .fcc-btn1:hover {
-                        background-color: #bbbbc9;
-                        
-                        }
-                        
-                    </style>
-                    <a class="fcc-btn1" href="{% url 'detectarQr' %}">Ingresar al modulo de deteccion</a>
-                </h2>
-            </div>
-        </p>
-
-
-    </div>
-    <div class="container">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.esm.min.js" integrity="sha512-Oz1b6eJ3gVXzBtTRr9ljoZJ6TlU3vmvrqRyJs5xsZkbEy7CQJ/3KL5L1tXOXmiJT0E9WRZSNvvDHfeDkkqL7ug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-    </div>
+    
 </body>
 
 </html>
-
