@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css" 
+    integrity="sha512-usVBAd66/NpVNfBge19gws2j6JZinnca12rAe2l+d+QkLU9fiG02O1X8Q6hepIpr/EYKZvKx/I9WsnujJuOmBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    
+    <title>Inicio</title>
+    <style type="text/css">
+        .navbar-brand
+        {
+            
+            font-size: xx-large;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar-expand-lg navbar-dark bg-dark " style="background-color: #000000">
+        
+        <div class="container-fluid container-md">
+            <a class="navbar-brand" href="{% url 'home' %}">Deteccion y creacion de codigo de barras y QR</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link active" aria-current="page" >Hola, {{username}} ||</a><br>
+                    
+                    <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">Salir</a>
+                    
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.esm.min.js" integrity="sha512-Oz1b6eJ3gVXzBtTRr9ljoZJ6TlU3vmvrqRyJs5xsZkbEy7CQJ/3KL5L1tXOXmiJT0E9WRZSNvvDHfeDkkqL7ug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    </div>
+
+
+    <div class="row">
+        <p>
+            
+            Proyecto de un módulo pequeño de detección de código QR y de barras hecho por Jacinto González y Lissette 
+            Caceres, desarrollado con el framework Django y el lenguaje de programación Python. <br />
+
+            <h3>A continuacion seleccione que desea utilizar: <br /></h3>
+            <div class="btndetector_generator">
+                <h2>
+                    <style>
+                        .fcc-btn {
+                        background-color: #373946;
+                        color: white;
+                        padding: 10px 20px;
+                        text-decoration: none;
+                        margin: 400px;
+                        justify-content: center;
+                        
+                        }
+                        .fcc-btn:hover {
+                        background-color: #bbbbc9;
+                        }
+                    
+                    </style>
+                    <br>
+
+                    <a class="fcc-btn" href="{% url 'generarQr' %}" >Ingresar al modulo de generar</a>
+                    
+                </h2>
+                <br>
+                <h2>
+                    <style>
+                        .fcc-btn1 {
+                        background-color: #373946;
+                        color: white;
+                        padding: 10px 20px;
+                        text-decoration: none;
+                        justify-content: center;
+                        margin-left: 400px;
+                        
+                        
+                        }
+                        .fcc-btn1:hover {
+                        background-color: #bbbbc9;
+                        
+                        }
+                        
+                    </style>
+                    <a class="fcc-btn1" href="{% url 'detectarQr' %}">Ingresar al modulo de deteccion</a>
+                </h2>
+            </div>
+        </p>
+
+
+    </div>
+    <div class="container">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.esm.min.js" integrity="sha512-Oz1b6eJ3gVXzBtTRr9ljoZJ6TlU3vmvrqRyJs5xsZkbEy7CQJ/3KL5L1tXOXmiJT0E9WRZSNvvDHfeDkkqL7ug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    </div>
+</body>
+
+</html>
+
