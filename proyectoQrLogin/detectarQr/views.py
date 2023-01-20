@@ -13,8 +13,30 @@ def camera_feed(request):
     stream = CameraStreamingWidget()
     frames = stream.get_frames()
 
-    #
-    
+    ## si se envía una solicitud ajax
+    if request.is_ajax():
+        print('Ajax request received')
+        time_stamp = str(datetime.now().strftime("%d-%m-%y"))
+        image = os.path.join(os.getcwd(), "media",
+                             "images", f"img_{time_stamp}.png")
+        if os.path.exists(image):
+            # abrir imagen si existe
+            im = Image.open(image)
+            # decodificar código de barras
+            if decode(im):
+                for barcode in decode(im):
+                    barcode_data = (barcode.data).decode('utf-8')
+                    file_saved_at = time.ctime(os.path.getmtime(image))
+                    # devuelve el código de barras decodificado como respuesta json
+                    return JsonResponse(data={'barcode_data': barcode_data, 'file_saved_at': file_saved_at})
+            else:
+                return JsonResponse(data={'barcode_data': None})
+        else:
+            return JsonResponse(data={'barcode_data': None})
+    # de lo contrario, transmita los fotogramas desde la alimentación de la cámara definida en camera_feed
+    else:
+        return StreamingHttpResponse(frames, content_type='multipart/x-mixed-replace; boundary=frame')
+
 def detect(request):
     stream = CameraStreamingWidget()
     success, frame = stream.camera.read()
