@@ -14,3 +14,12 @@ def camera_feed(request):
     frames = stream.get_frames()
 
     #
+    
+def detect(request):
+    stream = CameraStreamingWidget()
+    success, frame = stream.camera.read()
+    if success:
+        status = True
+    else:
+        status = False
+    return render(request, 'detectarQr/detectar.html', context={'cam_status': status})
