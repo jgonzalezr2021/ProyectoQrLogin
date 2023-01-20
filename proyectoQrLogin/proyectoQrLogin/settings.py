@@ -30,6 +30,7 @@ load_dotenv(dotenv_path)
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+
 if os.environ.get('TARGET_ENV').lower() == 'prod':
     DEBUG = False
 else:
