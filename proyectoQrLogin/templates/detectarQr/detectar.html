@@ -16,6 +16,7 @@
             
             font-size: xx-large;
         }
+
     </style>
 </head>
 
@@ -43,38 +44,79 @@
 
     </div>
     <div class="row">
-        <h2>Generador de códigos QR y de barras.</h2>
-        <p>
-            Para genera codigos QR y codigos de barra seleccione el tipo de codigo que desea y a continuación<br />
-            escriba lo que se desea encriptar y posteriormente clic en generar codigo.
-        </p>
-        <hr />
-    
-        <div class="col-md-10 mx-auto">
-            <form method="POST">
-                {% csrf_token %}
-                <div class="form-group row">
-                    <div class="col-sm-5">
-                        <label for="typeOfBarcode">Elija un tipo de código del menú:</label>
-                        <select class="form-control" id="typeOfBarcode" name="typeOfBarcode">
-                            {% for barcode_type in barcode_types %}
-                            <option>{{ barcode_type }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
-                    <div class="col-sm-5">
-                        <label for="barcodeData">Agregar datos:</label>
-                        <input type="text" id="barcodeData" name="barcodeData" class="form-control input" required />
-                    </div>
-                    <div class="col-sm-2">
-                        <label for="btnGenerate">Clic para generar</label>
-                        <button type="submit" id="btnGenerate" class="form-control btn btn-primary">Generar código</button>
-                    </div>
-                </div>
+        <center>
+        <blockquote>
+            <h2 >Detector de códigos QR y de barras.</h2>
+         <p>
+                Para detectar codigos QR y codigos de barra siga las siguientes indicaciones:<br />
+               1. Muestre el codigo QR o codigo de barras frente a la camara.<br />
+                2. Mantener de manera firme, dependiendo del hardware de la camara de podra detectar.<br />
+                3. La deteccion se mostrara encima del codigo QR detectado.<br />
+         </p>
+         <hr />
+        </blockquote> 
+        </center>
+        <div class="col-md-6">
+            {% if cam_status %}
+            <h3>Estado de la transmisión de la camara: conectado</h3>
+            <img src="{% url 'camera_feed' %}" style="width: 450px; height: 350p" />
+            {% else %}
+            <h3>Estado de la transmisión de la camara: Sin acceso</h3>
+            <h5>Puedes chequear estos tips:</h5>
+            <ul class="text-right list-inline">
+                <li>La conexión USB?</li>
+                <li>¿El número de cámara en su archivo .env normalmente suele ser 0 - 1? </li>
+                <li>Verifique si esta usando otro programa la camara.</li>
+            </ul>
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <div class="alert alert-warning" role="alert">
+                Nota: Si no ocurre nada verifique la camara funciona correctamente, se notificara 
+                que no se ha podido validar la deteccion.
+            </div>
+            <form>
+              <div class="form-group">
+                <label id="lbl_BarcodeData" for="txt_BarcodeData">Datos de código de barras:</label>
+                <textarea class="form-control" id="txt_BarcodeData" rows="3"></textarea>
+                <label id="lbl_LastModified">Última modificación en:</label>
+              </div>
             </form>
+            <br />
+            <a id="btn_ReadQRCode" class="btn btn-primary" href="#">Leer codigo QR</a>
         </div>
     </div>
-</body>
-
-</html>
-
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+    <script>
+        $("#btn_ReadQRCode").on("click", function (e) {
+            console.log("Ajax request triggered.");
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{% url 'camera_feed' %}",
+                data: {
+                    csrfmiddlewaretoken: "{{ csrf_token }}",
+                    dataType: "json",
+                },
+                success: function (data) {
+                    if (data.barcode_data !== null && data.barcode_data !== '') {
+                        console.log(data);
+                        $("#txt_BarcodeData").html(data.barcode_data);
+                        $("#lbl_LastModified").html(
+                            "Last modified at: " + data.file_saved_at
+                        );
+                    } else {
+                        console.log(data);
+                        $("#txt_BarcodeData").html("");
+                        $("#lbl_LastModified").html("<h3><em>No se ha encontrado datos. Escane el código de barras de nuevo.</em></h3>");
+                    }
+                },
+                error: function () {
+                    console.log(error);
+                }
+            });
+        });
+    </script>
+    
