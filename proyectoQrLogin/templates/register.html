@@ -8,199 +8,213 @@
     <link rel="stylesheet" href="css/login.css">
         
    <style type="text/css">
-           body {
-     font-family: 'Overpass', sans-serif;
-        font-weight: normal;
-        font-size: 100%;
-        color: #1b262c;
-    
-        margin: 0;
-        background-color: #3b4850;
-    }
-
-    #contenedor {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-    
-     margin: 0;
-     padding: 0;
-     min-width: 100vw;
-     min-height: 100vh;
-     width: 100%;
-     height: 100%;
-    }
-
-    #central {
-        max-width: 320px;
-        width: 100%;
-    }
-
-    .titulo {
-        font-size: 250%;
-        color:#bbe1fa;
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    #registro {
-        width: 100%;
-        padding: 50px 30px;
-        background-color: #585b5e;
-        
-        -webkit-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-        -moz-box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-        box-shadow: 0px 0px 5px 5px rgba(0,0,0,0.15);
-        
-        border-radius: 3px 3px 3px 3px;
-        -moz-border-radius: 3px 3px 3px 3px;
-        -webkit-border-radius: 3px 3px 3px 3px;
-        
-        box-sizing: border-box;
-    }
-
-    #registro input {
-        font-family: 'Overpass', sans-serif;
-        font-size: 110%;
-        color: #1b262c;
-        
-        display: block;
-        width: 100%;
-        height: 40px;
-        
-        margin-bottom: 10px;
-        padding: 5px 5px 5px 10px;
-        
-        box-sizing: border-box;
-        
-        border: none;
-        border-radius: 3px 3px 3px 3px;
-        -moz-border-radius: 3px 3px 3px 3px;
-        -webkit-border-radius: 3px 3px 3px 3px;
-    }
-
-    #registro input::placeholder {
-        font-family: 'Overpass', sans-serif;
-        color: #E4E4E4;
-    }
-
-    #registro button {
-        font-family: 'Overpass', sans-serif;
-        font-size: 110%;
-        color:#1b262c;
-        width: 100%;
-        height: 40px;
-        border: none;
-        
-        border-radius: 3px 3px 3px 3px;
-        -moz-border-radius: 3px 3px 3px 3px;
-        -webkit-border-radius: 3px 3px 3px 3px;
-        
-        background-color: #bbe1fa;
-        
-        margin-top: 10px;
-    }
-
-    #registro button:hover {
-        background-color: #0f4c75;
-        color:#bbe1fa;
-    }
-
-    .pie-form {
-        font-size: 90%;
-        text-align: center;    
-        margin-top: 15px;
-    }
-
-    .pie-form a {
-        display: block;
-        text-decoration: none;
-        color: #bbe1fa;
-        margin-bottom: 3px;
-    }
-
-    .pie-form a:hover {
-        color: #0f4c75;
-    }
-
-    .inferior {
-        margin-top: 10px;
-        font-size: 90%;
-        text-align: center;
-    }
-
-    .inferior a {
-        display: block;
-        text-decoration: none;
-        color: #bbe1fa;
-        margin-bottom: 3px;
-    }
-
-    .inferior a:hover {
-        color: #3282b8;
-    }
-
+         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+        *
+        {
+	        margin: 0;
+	        padding: 0;
+	        box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+         body 
+        {
+            display: flex;
+        	justify-content: center;
+        	align-items: center;
+        	min-height: 100vh;
+        	flex-direction: column;
+        	background: #23242a;
+        }
+        .box 
+            {
+        	position: relative;
+	        width: 380px;
+	        height: 420px;
+	        background: #1c1c1c;
+	        border-radius: 8px;
+	        overflow: hidden;
+        }
+        .box::before 
+        {
+        	content: '';
+	        z-index: 1;
+        	position: absolute;
+        	top: -50%;
+        	left: -50%;
+        	width: 380px;
+        	height: 420px;
+        	transform-origin: bottom right;
+        	background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
+        	animation: animate 6s linear infinite;
+        }
+        .box::after 
+        {
+        	content: '';
+        	z-index: 1;
+        	position: absolute;
+        	top: -50%;
+        	left: -50%;
+        	width: 380px;
+        	height: 420px;
+        	transform-origin: bottom right;
+        	background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
+        	animation: animate 6s linear infinite;
+        	animation-delay: -3s;
+        }
+        @keyframes animate 
+        {
+	        0%
+	        {
+	        	transform: rotate(0deg);
+	        }
+	        100%
+	        {
+	        	transform: rotate(360deg);
+	        }
+        }
+        form 
+        {
+        	position: absolute;
+        	inset: 2px;
+        	background: #28292d;
+        	padding: 50px 40px;
+        	border-radius: 8px;
+        	z-index: 2;
+        	display: flex;
+        	flex-direction: column;
+        }
+        h2 
+        {
+        	color: #45f3ff;
+        	font-weight: 500;
+        	text-align: center;
+        	letter-spacing: 0.1em;
+        }
+        .inputBox 
+        {
+        	position: relative;
+        	width: 300px;
+        	margin-top: 35px;
+        }
+        .inputBox input 
+        {
+            position: relative;
+            width: 100%;
+            padding: 20px 10px 10px;
+            background: transparent;
+            outline: none;
+            box-shadow: none;
+            border: none;
+            color: #23242a;
+            font-size: 1em;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+            z-index: 10;
+        }
+        .inputBox span 
+        {
+            position: absolute;
+            left: 0;
+            padding: 20px 0px 10px;
+            pointer-events: none;
+            font-size: 1em;
+            color: #8f8f8f;
+            letter-spacing: 0.05em;
+            transition: 0.5s;
+        }
+        .inputBox input:valid ~ span,
+        .inputBox input:focus ~ span 
+        {
+            color: #45f3ff;
+            transform: translateX(0px) translateY(-34px);
+            font-size: 0.75em;
+        }
+        .inputBox i 
+        {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background: #45f3ff;
+            border-radius: 4px;
+            overflow: hidden;
+            transition: 0.5s;
+            pointer-events: none;
+            z-index: 9;
+        }
+        .inputBox input:valid ~ i,
+        .inputBox input:focus ~ i 
+        {
+            height: 44px;
+        }
+        .links 
+        {
+            display: flex;
+            justify-content: space-between;
+        }
+        .links a 
+        {
+            margin: 10px 0;
+            font-size: 0.75em;
+            color: #8f8f8f;
+            text-decoration: beige;
+        }
+        .links a:hover, 
+        .links a:nth-child(2)
+        {
+            color: #45f3ff;
+        }
+        input[type="submit"]
+        {
+            border: none;
+            outline: none;
+            padding: 11px 25px;
+            background: #45f3ff;
+            cursor: pointer;
+            border-radius: 4px;
+            font-weight: 600;
+            width: 100px;
+            margin-top: 10px;
+        }
+        input[type="submit"]:active 
+        {
+            opacity: 0.8;
+        }
    </style>
    
    <script type="text/javascript">
    
    </script>
 </head>
-
 <body>
-
-        
-    <div id="contenedor">
-        <div id="central">
-            <div id="registro">
-                <div class="titulo">
-                    Registrate
-                </div>
-                <form id="registroform" method="POST">
-                    {% csrf_token %}
-                    
-                    <input type="text" name="username" id="username" placeholder="Usuario" required>
-                    
-                    <input type="password" name="password" id="password" placeholder="Contraseña" required>
-                    
-                    <input type="email" name="email" id="email" placeholder="E-mail" required>
-                    <input type="submit" value="Registrarse">
-                    
-                    <p>Ya tienes un usuario? <a href="{% url 'login' %}">Log In</a></p>
-                </form>
-                
-            </div>
+	<div class="box">
+		<form autocomplete="off" id="loginform" method="POST">
+            {% csrf_token %}
+			<h2>Registrarse</h2>
+			<div class="inputBox">
+				<input type="text" name="username" id="username" placeholder="Usuario" required>
+				
+				<i></i>
+			</div>
+			<div class="inputBox">
+				<input type="password" name="password" id="password" placeholder="Contraseña" required>
+				
+				<i></i>
+			</div>
+           
+			
+			<input type="submit" value="Ingresar " class="submit_button">
+            {% for message in messages %}
+            <p class="error-message">{{ message }}</p>
+            {% endfor %}
+            <div class="links">
+				<a href="#">Ya tienes un usuario?</a>
+				<a href="{% url 'login' %}">Log In</a>
+			</div>
             
-        </div>
-    </div>
-        
-
-    
-<!-- Link hacia el archivo de estilos css 
-    <form method="POST">
-        {% csrf_token %}
-
-        {{form.username}}
-
-        {{form.email}}
-
-        {{form.password1}}
-
-        {{form.password2}}
-
-        <input type="submit" value="Register">
-    </form>
-
-    <p>Ya tienes un usuario? <a href="{% url 'login' %}">Log In</a></p>
--->
+                    
+		</form>
+	</div>
 </body>
-<!--
-<script>
-    var form_fields = document.getElementsByTagName('input')
-    form_fields[1].placeholder = 'Usuario'
-    form_fields[2].placeholder = 'E-mail'
-    form_fields[3].placeholder = 'Password'
-    form_fields[4].placeholder = 'Escribe de nuevo el password'
-</script>
--->
 </html>
