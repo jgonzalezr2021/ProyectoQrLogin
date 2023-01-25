@@ -4,13 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+   
       
     {% load static %}
    <link rel="stylesheet" href="css/login.css">
         
    <style type="text/css">
-       @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
         *
         {
 	        margin: 0;
@@ -195,16 +195,17 @@
 </head>
 <body>
 	<div class="box">
-		<form autocomplete="off">
-			<h2>Sign in</h2>
+		<form autocomplete="off" id="loginform" method="POST">
+            {% csrf_token %}
+			<h2>Iniciar sesión</h2>
 			<div class="inputBox">
 				<input type="text" name="username" id="username" placeholder="Usuario" required>
-				<span>Userame</span>
+				
 				<i></i>
 			</div>
 			<div class="inputBox">
 				<input type="password" name="password" id="password" placeholder="Contraseña" required>
-				<span>Password</span>
+				
 				<i></i>
 			</div>
 			
@@ -212,8 +213,11 @@
             {% for message in messages %}
             <p class="error-message">{{ message }}</p>
             {% endfor %}
-
-            <p> No tienes una cuenta aun? <a href="{% url 'register' %}" >Registrarse</a> </p>
+            <div class="links">
+				<a href="#">No tienes una cuenta aun?</a>
+				<a href="{% url 'register' %}">Registrate</a>
+			</div>
+            
                     
 		</form>
 	</div>
