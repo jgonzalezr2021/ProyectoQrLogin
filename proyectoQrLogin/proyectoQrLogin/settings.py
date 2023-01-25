@@ -135,3 +135,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static_files')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+RECAPTCHA_PUBLIC_KEY= '6Lc3vCgkAAAAAA0A94H9ljQ_nvPMWjDvnwupu1ra'
+RECAPTCHA_PRIVATE_KEY='6Lc3vCgkAAAAAKs_ifAYCBRSItCsUJ1utCJms_G2'
