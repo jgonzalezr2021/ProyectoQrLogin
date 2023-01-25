@@ -174,7 +174,8 @@
             cursor: pointer;
             border-radius: 4px;
             font-weight: 600;
-            width: 100px;
+            width: 120px;
+            
             margin-top: 10px;
         }
         input[type="submit"]:active 
@@ -193,22 +194,26 @@
             {% csrf_token %}
 			<h2>Registrarse</h2>
 			<div class="inputBox">
+                
 				<input type="text" name="username" id="username" placeholder="Usuario" required>
 				
 				<i></i>
 			</div>
 			<div class="inputBox">
+                
 				<input type="password" name="password" id="password" placeholder="Crear contraseña" required>
 				
 				<i></i>
 			</div>
             <div class="inputBox">
+                
 				<input type="password" name="password" id="password" placeholder="Confirmar contraseña" required>
 				
 				<i></i>
+                
 			</div>
 			
-			<input type="submit" value="Confirmar " class="submit_button">
+			<input type="submit" value="Registrarse" class="submit_button">
             {% for message in messages %}
             <p class="error-message">{{ message }}</p>
             {% endfor %}
