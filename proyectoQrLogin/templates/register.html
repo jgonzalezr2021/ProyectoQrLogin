@@ -29,7 +29,7 @@
             {
         	position: relative;
 	        width: 380px;
-	        height: 420px;
+	        height: 480px;
 	        background: #1c1c1c;
 	        border-radius: 8px;
 	        overflow: hidden;
@@ -42,7 +42,7 @@
         	top: -50%;
         	left: -50%;
         	width: 380px;
-        	height: 420px;
+        	height: 480px;
         	transform-origin: bottom right;
         	background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
         	animation: animate 6s linear infinite;
@@ -55,7 +55,7 @@
         	top: -50%;
         	left: -50%;
         	width: 380px;
-        	height: 420px;
+        	height: 480px;
         	transform-origin: bottom right;
         	background: linear-gradient(0deg,transparent,#45f3ff,#45f3ff);
         	animation: animate 6s linear infinite;
@@ -198,19 +198,25 @@
 				<i></i>
 			</div>
 			<div class="inputBox">
-				<input type="password" name="password" id="password" placeholder="Contraseña" required>
+				<input type="password" name="password" id="password" placeholder="Crear contraseña" required>
 				
 				<i></i>
 			</div>
-           
+            <div class="inputBox">
+				<input type="password" name="password" id="password" placeholder="Confirmar contraseña" required>
+				
+				<i></i>
+			</div>
 			
-			<input type="submit" value="Ingresar " class="submit_button">
+			<input type="submit" value="Confirmar " class="submit_button">
             {% for message in messages %}
             <p class="error-message">{{ message }}</p>
             {% endfor %}
+            <br>
+          
             <div class="links">
 				<a href="#">Ya tienes un usuario?</a>
-				<a href="{% url 'login' %}">Log In</a>
+				<a href="{% url 'login' %}">Inicia sesión</a>
 			</div>
             
                     
