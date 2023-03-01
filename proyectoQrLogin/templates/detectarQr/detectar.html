@@ -457,12 +457,12 @@
             
            <small>Para detectar codigos QR y codigos de barra siga las siguientes indicaciones:<br />
             1. Muestre el codigo QR o codigo de barras frente a la camara.<br />
-             2. Mantener de manera firme, dependiendo del hardware de la camara de podra detectar.<br />
+             2. Mantener de manera firme, dependiendo del hardware se la camara de podra detectar.<br />
              3. La deteccion se mostrara encima del codigo QR detectado.<br /></small> 
 
              <div class="col-md-6">
                 {% if cam_status %}
-                <h3><small> Estado de la transmisión de la camara: conectado</small></h3>
+                <h3><small> Estado de la camara: conectado</small></h3>
                 <img src="{% url 'camera_feed' %}" style="width: 450px; height: 350p" align-items: auto/>
                 {% else %}
                 <h3><small>Estado de la transmisión de la camara: Sin acceso</small></h3>
@@ -479,17 +479,9 @@
                 <small> Nota: Si no ocurre nada verifique la camara funciona correctamente, se notificara 
                     que no se ha podido validar la deteccion.</small>
                 </div>
-                <form>
-                  <div class="form-group">
-                    <label id="lbl_BarcodeData" for="txt_BarcodeData"><small>Datos de código de barras:</small></label>
-                    <textarea class="form-control" id="txt_BarcodeData" rows="3"></textarea>
-                    
-                  </div>
-                </form>
+                
                 <br />
-                <button class="button">
-                <a id="btn_ReadQRCode" class="btn btn-primary" href="#">Leer codigo QR</a>
-                </button>
+                
             </div>
         </div>
    
