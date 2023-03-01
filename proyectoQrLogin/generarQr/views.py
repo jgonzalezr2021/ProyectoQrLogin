@@ -9,8 +9,8 @@ def generate_file(barcode_file):
     # output = HttpResponse(content_type="image/jpeg")
     output = HttpResponse(content_type="application/force-download")
     barcode_file.save(output, "JPEG")
-    output['Content-Disposition'] = 'attachment; filename=%s' % smart_str('barcode.jpg')
-    output['X-Sendfile'] = smart_str('barcode.jpg')
+    output['Content-Disposition'] = 'attachment; filename=%s' % smart_str('barcode.png')
+    output['X-Sendfile'] = smart_str('barcode.png')
     return output
 
 
